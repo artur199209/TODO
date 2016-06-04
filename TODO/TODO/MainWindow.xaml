@@ -11,6 +11,7 @@
             </Grid.ColumnDefinitions>
             <DataGrid x:Name="datagrid" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="125" Width="317" Grid.ColumnSpan="3">
                 <DataGrid.Columns>
+                    
                 </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="addTaskToListBtn" Content="Dodaj" HorizontalAlignment="Left" Margin="59,13,0,0" VerticalAlignment="Top" Width="110" Click="addTaskToListBtn_Click" Grid.Column="2"/>

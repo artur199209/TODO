@@ -35,3 +35,12 @@ C:\Users\Artur\documents\visual studio 2013\Projects\TODO\TODO\obj\Debug\TODO.Pr
 C:\Users\Artur\documents\visual studio 2013\Projects\TODO\TODO\obj\Debug\TODO.csproj.GenerateResource.Cache
 C:\Users\Artur\documents\visual studio 2013\Projects\TODO\TODO\obj\Debug\TODO.exe
 C:\Users\Artur\documents\visual studio 2013\Projects\TODO\TODO\obj\Debug\TODO.pdb
+C:\Users\Artur\documents\visual studio 2013\Projects\TODO\TODO\obj\Debug\TODO.csprojResolveAssemblyReference.cache
+C:\Users\Artur\documents\visual studio 2013\Projects\TODO\TODO\bin\Debug\System.Reactive.Core.dll
+C:\Users\Artur\documents\visual studio 2013\Projects\TODO\TODO\bin\Debug\System.Reactive.Interfaces.dll
+C:\Users\Artur\documents\visual studio 2013\Projects\TODO\TODO\bin\Debug\System.Reactive.Linq.dll
+C:\Users\Artur\documents\visual studio 2013\Projects\TODO\TODO\bin\Debug\System.Reactive.PlatformServices.dll
+C:\Users\Artur\documents\visual studio 2013\Projects\TODO\TODO\bin\Debug\System.Reactive.Core.xml
+C:\Users\Artur\documents\visual studio 2013\Projects\TODO\TODO\bin\Debug\System.Reactive.Interfaces.xml
+C:\Users\Artur\documents\visual studio 2013\Projects\TODO\TODO\bin\Debug\System.Reactive.Linq.xml
+C:\Users\Artur\documents\visual studio 2013\Projects\TODO\TODO\bin\Debug\System.Reactive.PlatformServices.xml
