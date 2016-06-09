@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
-namespace WpfApplication1
+namespace TODO
 {
 	/// <summary>
 	/// Interaction logic for EditTaskWindow.xaml
@@ -21,7 +9,7 @@ namespace WpfApplication1
 	{
 		private MainWindow mainwindow = null;
 		TODOTask tasktoremove = null;
-
+		
 		public EditTaskWindow(MainWindow mwindow, TODOTask todotask)
 		{
 			InitializeComponent();
@@ -30,12 +18,12 @@ namespace WpfApplication1
 			taskTxtBox.Text = todotask.task;
 			datepicker.Text = todotask.datetime;
 		}
-
+		
 		private void editTaskBtn_Click(object sender, RoutedEventArgs e)
 		{
 			if(taskTxtBox.Text != "" && prioritycmbbox.Text != "")
 			{
-				mainwindow.removeTaskFromList(tasktoremove);
+				mainwindow.removeTaskFromList();
 				TODOTask editedTask = new TODOTask();
 				editedTask.task = taskTxtBox.Text;
 				editedTask.priority = prioritycmbbox.Text;

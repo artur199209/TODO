@@ -1,38 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Threading;
 using System.Reactive.Linq;
 
-namespace WpfApplication1
+namespace TODO
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		List<TODOTask> todolist = new List<TODOTask>();
-		List<TODOTask> completedTaskList = new List<TODOTask>();
+		public List<TODOTask> todolist = new List<TODOTask>();
+		public List<TODOTask> completedTaskList = new List<TODOTask>();
+	
 		System.Windows.Forms.NotifyIcon notifyicon;
-		int indexToRemove = -1;
-
+		public int indexToRemove = -1;
+		
 		public MainWindow()
 		{
 			InitializeComponent();
-			//initSystemTray();
+			initSystemTray();
 			viewInfoAboutTasksForToday();
 		}
 
@@ -45,28 +34,31 @@ namespace WpfApplication1
 				checkEndlessTasksFromPast();
 			});
 		}
-
-		protected void checkEndlessTasksFromPast()
+		
+		public string checkEndlessTasksFromPast()
 		{
 			var endlessTasksList = from task in todolist
 								   where DateTime.Parse(task.datetime) < DateTime.Today
 								   select task;
+			string messageAboutTasksFromPast="";
+
 			if (endlessTasksList.Count() > 0)
 			{
 				if(endlessTasksList.Count() == 1)
 				{
-					string messageAboutTasksFromPast = "Nie zrobiłeś " + endlessTasksList.Count() + " zadania z poprzednich dni.";
+					messageAboutTasksFromPast = "Nie zrobiłeś " + endlessTasksList.Count() + " zadania z poprzednich dni.";
 					System.Windows.Forms.MessageBox.Show(messageAboutTasksFromPast);
 				}
 				else
 				{
-					string messageAboutTasksFromPast = "Nie zrobiłeś " + endlessTasksList.Count() + " zadań z poprzednich dni.";
+					messageAboutTasksFromPast = "Nie zrobiłeś " + endlessTasksList.Count() + " zadań z poprzednich dni.";
 					System.Windows.Forms.MessageBox.Show(messageAboutTasksFromPast);
 				}
 			}
+			return messageAboutTasksFromPast;
 		}
 
-		/*protected void initSystemTray()
+		protected void initSystemTray()
 		{
 			notifyicon = new System.Windows.Forms.NotifyIcon();
 			notifyicon.Icon = new System.Drawing.Icon("test.ico");
@@ -77,24 +69,27 @@ namespace WpfApplication1
 					this.Show();
 					this.WindowState = WindowState.Normal;
 				};
-		}  */
+		}
 
-		protected void viewTaskForToday()
+		public string viewTaskForToday()
 		{
+			string messageAboutTasksForToday = "";
 			List<TODOTask> listtasksfortoday = todolist.Where(x => x.datetime == DateTime.Today.ToShortDateString()).ToList();
+			
 			if(listtasksfortoday.Count > 0)
 			{
 				if(listtasksfortoday.Count == 1)
 				{
-					string messageAboutTasksForToday = "Masz dzisiaj do zrobienia " + listtasksfortoday.Count + " zadanie.";
+					messageAboutTasksForToday = "Masz dzisiaj do zrobienia " + listtasksfortoday.Count + " zadanie.";
 					System.Windows.Forms.MessageBox.Show(messageAboutTasksForToday);
 				}
 				else
 				{
-					string messageAboutTasksForToday = "Masz dzisiaj do zrobienia " + listtasksfortoday.Count + " zadań.";
+					messageAboutTasksForToday = "Masz dzisiaj do zrobienia " + listtasksfortoday.Count + " zadań.";
 					System.Windows.Forms.MessageBox.Show(messageAboutTasksForToday);
 				}
 			}
+			return messageAboutTasksForToday;
 		}
 
 		protected override void OnStateChanged(EventArgs e)
@@ -129,7 +124,7 @@ namespace WpfApplication1
 			datagrid.ItemsSource = todolist;
 		}
 
-		public void removeTaskFromList(TODOTask tasktoremove)
+		public void removeTaskFromList()
 		{
 			todolist.RemoveAt(indexToRemove);
 		}
@@ -176,15 +171,20 @@ namespace WpfApplication1
 			}
 		}
 
+		public void restoreCompletedTasks()
+		{
+			todolist = todolist.Concat(completedTaskList).ToList();
+			datagrid.ItemsSource = null;
+			sortlist();
+			datagrid.ItemsSource = todolist;
+			completedTaskList.Clear();
+		}
+
 		private void restoreCompletedTasksBtn_Click(object sender, RoutedEventArgs e)
 		{
 			if(completedTaskList.Count > 0)
 			{
-				todolist = todolist.Concat(completedTaskList).ToList();
-				datagrid.ItemsSource = null;
-				sortlist();
-				datagrid.ItemsSource = todolist;
-				completedTaskList.Clear();
+				restoreCompletedTasks();
 			}
 		}
 	}

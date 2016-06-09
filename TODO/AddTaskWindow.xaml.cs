@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace WpfApplication1
+namespace TODO
 {
 	/// <summary>
 	/// Interaction logic for Window1.xaml
@@ -25,19 +14,34 @@ namespace WpfApplication1
 		{
 			InitializeComponent();
 			mainwindow = mwindow;
+			initValueInComboBox();
+		}
+
+		private void initValueInComboBox()
+		{
+			foreach(var item in Enum.GetValues(typeof(Priorities.Priority)))
+			{
+				prioritycmbbox.Items.Add(item);
+			}
+		}
+
+		public void addTask()
+		{
+			TODOTask todotask = new TODOTask
+			{
+				priority = prioritycmbbox.Text,
+				task = tasktxtbox.Text,
+				datetime = datepicker.Text
+			};
+			mainwindow.addTaskToList(todotask);
+			this.Close();
 		}
 
 		private void addTaskBtn_Click(object sender, RoutedEventArgs e)
 		{
 			if(prioritycmbbox.Text != "" && tasktxtbox.Text != "" && datepicker.Text != "")
 			{
-				TODOTask todotask = new TODOTask { 
-					priority = prioritycmbbox.Text, 
-					task = tasktxtbox.Text,
-					datetime = datepicker.Text
-				};
-				mainwindow.addTaskToList(todotask);
-				this.Close();
+				addTask();
 			}
 			else
 			{

@@ -115,6 +115,7 @@
     <Compile Include="EditTaskWindow.xaml.cs">
       <DependentUpon>EditTaskWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Priorities.cs" />
     <Compile Include="TODOTask.cs" />
     <Compile Include="AddTaskWindow.xaml.cs">
       <DependentUpon>AddTaskWindow.xaml</DependentUpon>

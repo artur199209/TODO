@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfApplication1
+namespace TODO
 {
 	public class TODOTask
-	{
+	{		
 		public string priority
 		{
 			get;
